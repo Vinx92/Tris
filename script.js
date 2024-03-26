@@ -1,13 +1,25 @@
 const CASELLE = document.querySelectorAll(".casella");
 const CERCHIO = document.querySelector(".cerchio");
 const CROCE = document.querySelector(".croce");
+const COMBINAZIONI = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+
+const CASELLE_GIOCATORE_UNO = [];
+const CASELLE_GIOCATORE_DUE = [];
+
 const GIOCATORE_UNO = {
-  nome: "ciao",
   team: undefined,
   turno: true,
 };
 const GIOCATORE_DUE = {
-  nome: "yoo",
   team: undefined,
   turno: false,
 };
@@ -55,6 +67,7 @@ for (let i = 0; i < CASELLE.length; i++) {
         IMG.alt = "icona cerchio";
         IMG.draggable = false;
         CASELLE[i].appendChild(IMG);
+        CASELLE_GIOCATORE_UNO.push(i);
         GIOCATORE_UNO.turno = false;
         GIOCATORE_DUE.turno = true;
       } else {
@@ -63,9 +76,18 @@ for (let i = 0; i < CASELLE.length; i++) {
         IMG.alt = "icona cerchio";
         IMG.draggable = false;
         CASELLE[i].appendChild(IMG);
+        CASELLE_GIOCATORE_DUE.push(i);
         GIOCATORE_UNO.turno = true;
         GIOCATORE_DUE.turno = false;
       }
     }
   });
 }
+
+document.getElementById("rigioca").addEventListener("click", () => {
+  GIOCATORE_UNO.turno = true;
+  GIOCATORE_DUE.turno = false;
+  for (let i = 0; i < CASELLE.length; i++) {
+    CASELLE[i].innerHTML = "";
+  }
+});
