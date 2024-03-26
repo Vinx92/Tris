@@ -1,101 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="asset/tic-tac-toe.png" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="asset/tic-tac-toe.png"
+      type="image/x-icon"
+    />
     <title>Tris</title>
     <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-        }
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+      }
 
-        .scelta-team {
-            width: 500px;
-            height: 500px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+      .scelta-team {
+        width: 500px;
+        height: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .team {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      .team {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .cerchio,
-        .croce {
-            cursor: pointer;
-        }
+      .cerchio,
+      .croce {
+        cursor: pointer;
+      }
 
-        .cont-grid {
-            display: grid;
-            align-content: center;
-            justify-content: center;
-            grid-template-columns: 165px 165px 165px;
-            grid-template-rows: 165px 165px 165px;
-            width: 500px;
-            height: 500px;
-            margin: auto;
-        }
+      .cont-grid {
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        grid-template-columns: 165px 165px 165px;
+        grid-template-rows: 165px 165px 165px;
+        width: 500px;
+        height: 500px;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
 
-        .hide {
-            display: none;
-        }
+      .giocatori {
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 500px;
+      }
 
-        .border {
-            border: 5px solid black;
-        }
+      .scelta-giocatori {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        .border-left {
-            border-left: 5px solid black;
-        }
+      .conteiner-gioco {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
 
-        .border-right {
-            border-right: 5px solid black;
-        }
+      .dettagli-giocatori {
+        display: flex;
+        justify-content: space-evenly;
+      }
 
-        .border-bottom {
-            border-bottom: 5px solid black;
-        }
+      .cont-puls {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
 
-        .centraggio {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+      input {
+      }
+
+      .messaggio-risultato {
+        position: absolute;
+        top: 420px;
+        z-index: 2;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .border {
+        border: 5px solid black;
+      }
+
+      .border-left {
+        border-left: 5px solid black;
+      }
+
+      .border-right {
+        border-right: 5px solid black;
+      }
+
+      .border-bottom {
+        border-bottom: 5px solid black;
+      }
+
+      .centraggio {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="scelta-team">
-        <h1 id="titolo">SCEGLIE IL GIOCATORE UNO</h1>
-        <div class="team">
-            <div class="cerchio"><img src="asset/cerchio.png" alt="icona cerchio"></div>
-            <p style="font-size: 50px;">VS</p>
-            <div class="croce"><img src="asset/croce.png" alt="icona croce"></div>
+      <h1 id="titolo">SCEGLIE IL GIOCATORE UNO</h1>
+      <div class="team">
+        <div class="cerchio">
+          <img id="scelta-uno" src="asset/cerchio.png" alt="icona cerchio" />
         </div>
+        <p style="font-size: 50px">VS</p>
+        <div class="croce">
+          <img id="scelta-due" src="asset/croce.png" alt="icona croce" />
+        </div>
+      </div>
     </div>
-    <div class="cont-grid hide">
+    <div class="conteiner-gioco hide">
+      <div class="giocatori">
+        <div class="dettagli-giocatori">
+          <div class="scelta-giocatori" id="scelta-giocatore-uno">
+            <h3>Giocatore 1</h3>
+            <h3>WIN</h3>
+            <h3>0</h3>
+            <img
+              style="width: 80px"
+              id="team-giocatore-uno"
+              src=""
+              alt="icona"
+            />
+          </div>
+          <div class="scelta-giocatori" id="scelta-giocatore-due">
+            <h3>Giocatore 2</h3>
+            <h3>WIN</h3>
+            <h3>0</h3>
+            <img
+              style="width: 80px"
+              id="team-giocatore-due"
+              src=""
+              alt="icona"
+            />
+          </div>
+        </div>
+        <div class="cont-puls">
+          <input id="rigioca" type="button" value="Rigioca" />
+        </div>
+      </div>
+      <h2 class="messaggio-risultato hide">vince</h2>
+      <div class="cont-grid">
         <div class="border-bottom centraggio casella"></div>
-        <div class="border-left border-right border-bottom centraggio casella"></div>
+        <div
+          class="border-left border-right border-bottom centraggio casella"
+        ></div>
         <div class="border-bottom centraggio casella"></div>
         <div class="border-bottom centraggio casella"></div>
-        <div class="border-left border-right border-bottom centraggio casella"></div>
+        <div
+          class="border-left border-right border-bottom centraggio casella"
+        ></div>
         <div class="border-bottom centraggio casella"></div>
         <div class="centraggio casella"></div>
         <div class="border-left border-right centraggio casella"></div>
         <div class="centraggio casella"></div>
+      </div>
     </div>
-</body>
-<script src="script.js"></script>
-
+  </body>
+  <script src="script.js"></script>
 </html>
