@@ -81,26 +81,6 @@ for (let i = 0; i < CASELLE.length; i++) {
         GIOCATORE_DUE.turno = false;
       }
     }
-
-    // Verifico la vincita
-    for (let i = 0; i < COMBINAZIONI.length; i++) {
-      // Ciclo per tutti gli elementi dell'array delle varie combinazioi vincenti
-      // Controllo che tutti e tre gli elementi della combinazione vincente corrente
-      // siano presenti nell'array di uno dei due giocatori
-      if (
-        CASELLE_GIOCATORE_UNO.includes(COMBINAZIONI[i][0]) &&
-        CASELLE_GIOCATORE_UNO.includes(COMBINAZIONI[i][1]) &&
-        CASELLE_GIOCATORE_UNO.includes(COMBINAZIONI[i][2])
-      ) {
-        alert("Giocatore uno ha vinto");
-      } else if (
-        CASELLE_GIOCATORE_DUE.includes(COMBINAZIONI[i][0]) &&
-        CASELLE_GIOCATORE_DUE.includes(COMBINAZIONI[i][1]) &&
-        CASELLE_GIOCATORE_DUE.includes(COMBINAZIONI[i][2])
-      ) {
-        alert("Giocatore due ha vinto");
-      }
-    }
   });
 }
 
