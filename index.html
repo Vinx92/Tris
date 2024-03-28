@@ -8,9 +8,6 @@
   <title>Tris</title>
   <style>
     * {
-      font-family: "Bebas Neue", sans-serif;
-      font-weight: 400;
-      font-style: normal;
       user-select: none;
     }
 
@@ -18,6 +15,10 @@
       margin: 0;
       height: 100vh;
       display: flex;
+      background-color: #3b3b3b;
+      font-family: "Rock Salt", cursive;
+      font-weight: 400;
+      font-style: normal;
     }
 
     .scelta-team {
@@ -37,16 +38,27 @@
       align-items: center;
     }
 
+    label {
+      font-weight: bold;
+      font-size: 16px;
+      margin: 12px 0px;
+      color: black;
+    }
+
     select {
-      font-size: 15px;
+      font-size: 20px;
       text-align: center;
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      user-select: none;
     }
 
     #titolo {
-      background-color: black;
-      color: white;
+      color: black;
       padding: 5px 20px;
       border-radius: 7px;
+      font-size: 16px;
     }
 
     .team {
@@ -69,13 +81,11 @@
       grid-template-rows: 165px 165px 165px;
       width: 500px;
       height: 500px;
-      margin-top: auto;
-      margin-bottom: auto;
+      margin-top: 15px;
     }
 
     .giocatori {
-      margin-top: auto;
-      margin-bottom: auto;
+      margin-bottom: 15px;
       width: 500px;
     }
 
@@ -97,19 +107,32 @@
       justify-content: space-evenly;
     }
 
-    .cont-puls {
+    .cont-puls-mess {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* input {
-      } */
+    input {
+      border: none;
+      padding: 5px 25px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      user-select: none;
+      font-size: 20px;
+      background-color: #abd0ff;
+    }
 
-    .messaggio-risultato {
-      position: absolute;
-      top: 420px;
-      z-index: 2;
+    input:hover {
+      background-color: #7da7df;
+    }
+
+    input:active {
+      background-color: #507fbd;
     }
 
     .hide {
@@ -117,19 +140,19 @@
     }
 
     .border {
-      border: 5px solid black;
+      border: 5px solid white;
     }
 
     .border-left {
-      border-left: 5px solid black;
+      border-left: 5px solid white;
     }
 
     .border-right {
-      border-right: 5px solid black;
+      border-right: 5px solid white;
     }
 
     .border-bottom {
-      border-bottom: 5px solid black;
+      border-bottom: 5px solid white;
     }
 
     .centraggio {
@@ -138,10 +161,28 @@
       align-items: center;
       cursor: pointer;
     }
+
+    .attivo {
+      background-color: #00ab00;
+    }
+
+    .back-attivo {
+      height: 50px;
+      padding: 10px;
+      border-radius: 45px;
+    }
+
+    .reset {
+      position: absolute;
+      right: 0;
+      margin: 10px 10px 0px 0px;
+    }
   </style>
 </head>
 
 <body>
+  <a class="reset hide" href="index.html" draggable="false"><img src="asset/reset.png" alt="icona reset"
+      draggable="false"></a>
   <div class="scelta-team">
     <h1 id="titolo">GIOCATORE UNO SCEGLI IL TUO TEAM</h1>
     <div class="team">
@@ -154,7 +195,7 @@
       </div>
     </div>
     <div class="scelta-modalita">
-      <h2>SCEGLI LA MODALITà DI GIOCO</h2>
+      <label for="modalita-gioco">SCEGLI LA MODALITà DI GIOCO</label>
       <select name="modalita-gioco" id="modalita-gioco" disabled>
         <option value="nulla"></option>
         <option value="megliotre">IL PRIMO CHE ARRIVA A TRE</option>
@@ -166,23 +207,27 @@
     <div class="giocatori">
       <div class="dettagli-giocatori">
         <div class="scelta-giocatori" id="scelta-giocatore-uno">
-          <h3>Giocatore 1</h3>
-          <h3>WIN</h3>
-          <h3 id="punteggio-uno">0</h3>
-          <img style="width: 50px" id="team-giocatore-uno" src="" alt="icona" draggable="false" />
+          <h3 style="margin-bottom: 0">Giocatore 1</h3>
+          <h3 style="margin: 0">WIN</h3>
+          <h3 style="margin-top: 0" id="punteggio-uno">0</h3>
+          <div id="giocatore-uno-attivo" class="attivo back-attivo">
+            <img style="width: 50px" id="team-giocatore-uno" src="" alt="icona" draggable="false" />
+          </div>
         </div>
         <div class="scelta-giocatori" id="scelta-giocatore-due">
-          <h3>Giocatore 2</h3>
-          <h3>WIN</h3>
-          <h3 id="punteggio-due">0</h3>
-          <img style="width: 50px" id="team-giocatore-due" src="" alt="icona" draggable="false" />
+          <h3 style="margin-bottom: 0">Giocatore 2</h3>
+          <h3 style="margin: 0">WIN</h3>
+          <h3 style="margin-top: 0" id="punteggio-due">0</h3>
+          <div id="giocatore-due-attivo" class="back-attivo">
+            <img style="width: 50px" id="team-giocatore-due" src="" alt="icona" draggable="false" />
+          </div>
         </div>
       </div>
-      <div class="cont-puls">
+      <div class="cont-puls-mess hide">
+        <h2 class="messaggio-risultato"></h2>
         <input id="rigioca" type="button" value="Rigioca" />
       </div>
     </div>
-    <h2 class="messaggio-risultato hide"></h2>
     <div class="cont-grid">
       <div class="border-bottom centraggio casella"></div>
       <div class="border-left border-right border-bottom centraggio casella"></div>
@@ -198,7 +243,7 @@
 </body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rock+Salt&display=swap" rel="stylesheet">
 <script src="script.js"></script>
 
 </html>
