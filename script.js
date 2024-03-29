@@ -18,6 +18,7 @@ const COMBINAZIONI = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+let caselleVincenti;
 
 let caselleGiocatoreUno = [];
 let caselleGiocatoreDue = [];
@@ -127,6 +128,12 @@ for (let i = 0; i < CASELLE.length; i++) {
               PUNTEGGIO_UNO.textContent = convertiStringa(
                 PUNTEGGIO_UNO.textContent
               );
+              caselleVincenti = COMBINAZIONI[i];
+              for (let i = 0; i < caselleVincenti.length; i++) {
+                CASELLE[caselleVincenti[i]].classList.add(
+                  "back-ground-vincita"
+                );
+              }
               if (PUNTEGGIO_UNO.textContent == 3) {
                 CONT_PULS_MESS.classList.remove("hide");
                 giocoFinito = true;
@@ -144,6 +151,12 @@ for (let i = 0; i < CASELLE.length; i++) {
               PUNTEGGIO_DUE.textContent = convertiStringa(
                 PUNTEGGIO_DUE.textContent
               );
+              caselleVincenti = COMBINAZIONI[i];
+              for (let i = 0; i < caselleVincenti.length; i++) {
+                CASELLE[caselleVincenti[i]].classList.add(
+                  "back-ground-vincita"
+                );
+              }
               if (PUNTEGGIO_DUE.textContent == 3) {
                 CONT_PULS_MESS.classList.remove("hide");
                 giocoFinito = true;
@@ -212,6 +225,10 @@ for (let i = 0; i < CASELLE.length; i++) {
               PUNTEGGIO_UNO.textContent
             );
             giocoFinito = true;
+            caselleVincenti = COMBINAZIONI[i];
+            for (let i = 0; i < caselleVincenti.length; i++) {
+              CASELLE[caselleVincenti[i]].classList.add("back-ground-vincita");
+            }
           } else if (
             caselleGiocatoreDue.includes(COMBINAZIONI[i][0]) &&
             caselleGiocatoreDue.includes(COMBINAZIONI[i][1]) &&
@@ -223,6 +240,10 @@ for (let i = 0; i < CASELLE.length; i++) {
               PUNTEGGIO_DUE.textContent
             );
             giocoFinito = true;
+            caselleVincenti = COMBINAZIONI[i];
+            for (let i = 0; i < caselleVincenti.length; i++) {
+              CASELLE[caselleVincenti[i]].classList.add("back-ground-vincita");
+            }
           }
           let caselleOccupate =
             caselleGiocatoreUno.length + caselleGiocatoreDue.length;
@@ -256,6 +277,9 @@ document.getElementById("rigioca").addEventListener("click", () => {
         .getElementById("giocatore-due-attivo")
         .classList.remove("attivo");
       document.getElementById("giocatore-uno-attivo").classList.add("attivo");
+      for (let i = 0; i < caselleVincenti.length; i++) {
+        CASELLE[caselleVincenti[i]].classList.remove("back-ground-vincita");
+      }
     } else {
       GIOCATORE_UNO.turno = true;
       GIOCATORE_DUE.turno = false;
@@ -271,6 +295,9 @@ document.getElementById("rigioca").addEventListener("click", () => {
         .getElementById("giocatore-due-attivo")
         .classList.remove("attivo");
       document.getElementById("giocatore-uno-attivo").classList.add("attivo");
+      for (let i = 0; i < caselleVincenti.length; i++) {
+        CASELLE[caselleVincenti[i]].classList.remove("back-ground-vincita");
+      }
     }
   } else {
     GIOCATORE_UNO.turno = true;
@@ -285,6 +312,9 @@ document.getElementById("rigioca").addEventListener("click", () => {
     CONT_PULS_MESS.classList.add("hide");
     document.getElementById("giocatore-due-attivo").classList.remove("attivo");
     document.getElementById("giocatore-uno-attivo").classList.add("attivo");
+    for (let i = 0; i < caselleVincenti.length; i++) {
+      CASELLE[caselleVincenti[i]].classList.remove("back-ground-vincita");
+    }
   }
 });
 
