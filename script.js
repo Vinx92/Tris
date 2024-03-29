@@ -49,8 +49,6 @@ CERCHIO.addEventListener("click", () => {
       MODALITA_GIOCO.removeAttribute("disabled");
       document.getElementById("titolo").textContent =
         "ORA SCEGLIETE LA MODALITà DI GIOCO";
-      // document.querySelector(".scelta-team").classList.add("hide");
-      // document.querySelector(".conteiner-gioco").classList.remove("hide");
     }
   }
 });
@@ -70,8 +68,6 @@ CROCE.addEventListener("click", () => {
       MODALITA_GIOCO.removeAttribute("disabled");
       document.getElementById("titolo").textContent =
         "ORA SCEGLIETE LA MODALITà DI GIOCO";
-      // document.querySelector(".scelta-team").classList.add("hide");
-      // document.querySelector(".conteiner-gioco").classList.remove("hide");
     }
   }
 });
@@ -138,7 +134,6 @@ for (let i = 0; i < CASELLE.length; i++) {
               } else {
                 CONT_PULS_MESS.classList.remove("hide");
                 MESSAGGIO.textContent = "VINCE IL GIOCATORE UNO";
-
                 giocoFinito = true;
               }
             } else if (
@@ -156,17 +151,15 @@ for (let i = 0; i < CASELLE.length; i++) {
               } else {
                 CONT_PULS_MESS.classList.remove("hide");
                 MESSAGGIO.textContent = "VINCE IL GIOCATORE DUE";
-
                 giocoFinito = true;
               }
-            } else {
-              let caselleOccupate =
-                caselleGiocatoreUno.length + caselleGiocatoreDue.length;
-              if (caselleOccupate === 9) {
-                CONT_PULS_MESS.classList.remove("hide");
-                MESSAGGIO.textContent = "PAREGGIO";
-                giocoFinito = true;
-              }
+            }
+            let caselleOccupate =
+              caselleGiocatoreUno.length + caselleGiocatoreDue.length;
+            if (caselleOccupate === 9 && giocoFinito === false) {
+              CONT_PULS_MESS.classList.remove("hide");
+              MESSAGGIO.textContent = "PAREGGIO";
+              giocoFinito = true;
             }
           }
         }
@@ -175,6 +168,12 @@ for (let i = 0; i < CASELLE.length; i++) {
       if (giocoFinito === false) {
         if (CASELLE[i].childNodes.length === 0) {
           if (GIOCATORE_UNO.turno === true) {
+            document
+              .getElementById("giocatore-uno-attivo")
+              .classList.remove("attivo");
+            document
+              .getElementById("giocatore-due-attivo")
+              .classList.add("attivo");
             const IMG = document.createElement("img");
             IMG.src = GIOCATORE_UNO.imgTeam;
             IMG.alt = "icona cerchio";
@@ -184,6 +183,12 @@ for (let i = 0; i < CASELLE.length; i++) {
             GIOCATORE_UNO.turno = false;
             GIOCATORE_DUE.turno = true;
           } else {
+            document
+              .getElementById("giocatore-due-attivo")
+              .classList.remove("attivo");
+            document
+              .getElementById("giocatore-uno-attivo")
+              .classList.add("attivo");
             const IMG = document.createElement("img");
             IMG.src = GIOCATORE_DUE.imgTeam;
             IMG.alt = "icona cerchio";
@@ -218,14 +223,13 @@ for (let i = 0; i < CASELLE.length; i++) {
               PUNTEGGIO_DUE.textContent
             );
             giocoFinito = true;
-          } else {
-            let caselleOccupate =
-              caselleGiocatoreUno.length + caselleGiocatoreDue.length;
-            if (caselleOccupate === 9) {
-              CONT_PULS_MESS.classList.remove("hide");
-              MESSAGGIO.textContent = "PAREGGIO";
-              giocoFinito = true;
-            }
+          }
+          let caselleOccupate =
+            caselleGiocatoreUno.length + caselleGiocatoreDue.length;
+          if (caselleOccupate === 9 && giocoFinito === false) {
+            CONT_PULS_MESS.classList.remove("hide");
+            MESSAGGIO.textContent = "PAREGGIO";
+            giocoFinito = true;
           }
         }
       }
